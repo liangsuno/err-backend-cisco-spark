@@ -324,9 +324,9 @@ class CiscoSparkBackend(ErrBot):
             log.fatal('You need to define WEBHOOK_SECRET in the BOT_IDENTITY of config.py.')
             sys.exit(1)
 
-        self._bot_name = bot_identity.get('BOT_NAME', None)
+        self._bot_name = bot_identity.get('NAME', None)
         if not self._bot_name:
-            log.fatal('You need to define BOT_NAME in the BOT_IDENTITY of config.py.')
+            log.fatal('You need to define NAME in the BOT_IDENTITY of config.py.')
             sys.exit(1)
 
         self._bot_rooms = config.CHATROOM_PRESENCE
