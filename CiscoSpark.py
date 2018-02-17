@@ -324,6 +324,11 @@ class CiscoSparkBackend(ErrBot):
             log.fatal('You need to define WEBHOOK_SECRET in the BOT_IDENTITY of config.py.')
             sys.exit(1)
 
+        self._bot_name = bot_identity.get('BOT_NAME', None)
+        if not self._bot_name:
+            log.fatal('You need to define BOT_NAME in the BOT_IDENTITY of config.py.')
+            sys.exit(1)
+
         self._bot_rooms = config.CHATROOM_PRESENCE
         if not self._bot_rooms:
             log.fatal('You need to define CHATROOM_PRESENCE in config.py.')
@@ -361,6 +366,10 @@ class CiscoSparkBackend(ErrBot):
     @property
     def webhook_secret(self):
         return self._webhook_secret
+
+    @property
+    def bot_name(self):
+        return self._bot_name
 
     def create_webhook(self, url=None, name=CISCO_SPARK_WEBHOOK_ID, resource='messages', event='created', filter=None,
                        secret=None):
